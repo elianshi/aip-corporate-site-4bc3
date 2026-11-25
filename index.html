@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    try {
+      var storedScheme = localStorage.getItem("color-scheme");
+      if (storedScheme === "light" || storedScheme === "dark") {
+        document.querySelector('meta[name="color-scheme"]').content = storedScheme;
+      }
+    } catch (e) {}
+  </script>
+  <title>星云智算企业官网 — 企业数字化与 AI 协同解决方案</title>
+  <meta name="description" content="面向「星云智算企业官网」的 AI 组织立项方案：涵盖需求细化、架构契约、工程实现与质量验收闭环。">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">
+        <svg class="brand-mark" width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect width="28" height="28" rx="8" fill="currentColor" fill-opacity="0.14"/>
+          <path d="M8 19L14 7L20 19H16.8L14 13.2L11.2 19H8Z" fill="currentColor"/>
+        </svg>
+        <span class="brand-name">星云智算企业官网</span>
+      </a>
+      <nav aria-label="主导航">
+        <ul class="nav-list">
+          <li><a href="#solutions">核心方案</a></li>
+          <li><a href="#architecture">技术架构</a></li>
+          <li><a href="#faq">常见问题</a></li>
+          <li><a href="#contact">商务咨询</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        <button type="button" id="theme-toggle" class="btn btn-ghost" aria-label="切换明暗主题">
+          <span class="theme-label-dark">切换浅色</span>
+          <span class="theme-label-light">切换深色</span>
+        </button>
+        <button type="button" id="open-demo-btn" class="btn btn-primary">预约演示</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section id="top" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">由 AIP 虚拟员工组织协作构建 · 自动化交付</p>
+          <h1>星云智算企业官网</h1>
+          <p class="hero-desc">面向「星云智算企业官网」的 AI 组织立项方案：涵盖需求细化、架构契约、工程实现与质量验收闭环。 助力企业构建高可靠、可审计、可扩展的新一代业务系统与 AI 组织协同体系。</p>
+          <div class="hero-cta">
+            <button type="button" id="hero-demo-btn" class="btn btn-primary">立即预约架构演示</button>
+            <a class="btn btn-secondary" href="#solutions">浏览核心能力</a>
+          </div>
+          <dl class="metrics-strip">
+            <div class="metric-item">
+              <dt>交付可用性</dt>
+              <dd>99.95%</dd>
+            </div>
+            <div class="metric-item">
+              <dt>研发效能提升</dt>
+              <dd>3.4×</dd>
+            </div>
+            <div class="metric-item">
+              <dt>全流程审计覆盖</dt>
+              <dd>100%</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <svg viewBox="0 0 420 320" width="420" height="320" class="arch-svg" fill="none">
+            <rect x="20" y="20" width="380" height="280" rx="20" stroke="currentColor" stroke-opacity="0.18" stroke-width="1.5"/>
+            <rect x="46" y="48" width="144" height="68" rx="12" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-opacity="0.25"/>
+            <rect x="230" y="48" width="144" height="68" rx="12" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-opacity="0.25"/>
+            <rect x="46" y="152" width="328" height="116" rx="14" fill="currentColor" fill-opacity="0.06" stroke="currentColor" stroke-opacity="0.25"/>
+            <path d="M190 82H230M118 116V152M302 116V152" stroke="currentColor" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="4 4"/>
+            <circle cx="118" cy="82" r="10" fill="currentColor" fill-opacity="0.65"/>
+            <circle cx="302" cy="82" r="10" fill="currentColor" fill-opacity="0.65"/>
+            <rect x="74" y="182" width="96" height="56" rx="10" fill="currentColor" fill-opacity="0.14"/>
+            <rect x="184" y="182" width="164" height="22" rx="6" fill="currentColor" fill-opacity="0.18"/>
+            <rect x="184" y="216" width="120" height="22" rx="6" fill="currentColor" fill-opacity="0.12"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>核心产品与企业方案</h2>
+          <p>覆盖从战略立项、组织编排到生产级工程交付的全栈企业能力。</p>
+        </div>
+        <div class="cards-grid reveal-group">
+          <article class="card reveal-card">
+            <h3>AI 组织协同中台</h3>
+            <p>统一管理部门、岗位模型、数字员工档案与权限边界，实现跨团队透明协作与任务自动流转。</p>
+          </article>
+          <article class="card reveal-card">
+            <h3>云地混合工程执行</h3>
+            <p>支持服务端容器化 Worker 与本地 Git Worktree 沙箱执行器协同交付，兼顾安全隔离与高效研发。</p>
+          </article>
+          <article class="card reveal-card">
+            <h3>全链路质量与审计门禁</h3>
+            <p>每一次架构评审、代码提交与测试验收均留存不可变审计轨迹，保障企业合规与稳定上线。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2>标准化交付流程</h2>
+          <p>由产品、架构、研发与质量专家 AI 员工协同完成，四步实现可验证上线。</p>
+        </div>
+        <ol class="steps-grid reveal-group">
+          <li class="step-card reveal-card">
+            <span class="step-num">01</span>
+            <h3>需求规格定义</h3>
+            <p>AI 产品经理梳理核心用户故事、MVP 边界与可量化验收标准。</p>
+          </li>
+          <li class="step-card reveal-card">
+            <span class="step-num">02</span>
+            <h3>系统架构契约</h3>
+            <p>首席架构师输出分层架构、数据模型与接口契约，消除后期返工。</p>
+          </li>
+          <li class="step-card reveal-card">
+            <span class="step-num">03</span>
+            <h3>工程实现与联调</h3>
+            <p>前后端 AI 工程师在独立分支实现核心功能并通过自动化测试。</p>
+          </li>
+          <li class="step-card reveal-card">
+            <span class="step-num">04</span>
+            <h3>QA 门禁与发布</h3>
+            <p>质量专家执行端到端回归检查，生成验收报告并部署上线。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="faq" class="section" aria-label="常见问题">
+      <div class="container faq-wrap">
+        <div class="section-head">
+          <h2>常见问题</h2>
+          <p>关于企业部署、安全隔离与定制扩展的核心解答。</p>
+        </div>
+        <div class="faq-list">
+          <details name="faq" open>
+            <summary>系统是否支持私有化部署与本地代码库隔离？</summary>
+            <p>支持。平台采用控制面与执行面分离架构，支持本地 Git Worktree 隔离开发与企业私有 Docker 集群部署。</p>
+          </details>
+          <details name="faq">
+            <summary>企业现有飞书与 GitHub 流程如何无缝接入？</summary>
+            <p>通过飞书长连接与多维表格中台，可直接将立项审批、任务看板及 GitHub 分支交付串联，无需额外切换后台。</p>
+          </details>
+          <details name="faq">
+            <summary>是否支持按企业规范定制品牌视觉与内容？</summary>
+            <p>支持。所有前端模板均遵循现代 Web 语义化标准与 CSS Design Tokens，可快速定制主题色、版式与模块。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-alt">
+      <div class="container contact-grid">
+        <div>
+          <h2>联系我们 · 获取企业定制方案</h2>
+          <p>留下您的联系信息，我们的架构师团队将在 1 个工作日内为您安排专属方案演示。</p>
+          <p class="build-meta">本官网由 <strong>星云智算企业官网-前端工程师</strong> 构建并部署于 GitHub Pages。</p>
+        </div>
+        <form id="contact-form" class="contact-form" novalidate>
+          <div class="field">
+            <label for="contact-name">您的姓名</label>
+            <span id="name-hint" class="hint">请填写您的称呼（至少 2 个字符）</span>
+            <input type="text" id="contact-name" name="name" required minlength="2" autocomplete="name" aria-describedby="name-hint" data-error="name-error">
+            <div id="name-error" class="error-msg">
+              <span role="img" aria-label="Error">❌</span> 请输入至少 2 个字符的姓名。
+            </div>
+          </div>
+          <div class="field">
+            <label for="contact-email">企业邮箱</label>
+            <span id="email-hint" class="hint">格式示例：name@company.com</span>
+            <input type="email" id="contact-email" name="email" required inputmode="email" autocomplete="email" aria-describedby="email-hint" data-error="email-error">
+            <div id="email-error" class="error-msg">
+              <span role="img" aria-label="Error">❌</span> 请输入有效的企业邮箱地址，例如 name@company.com。
+            </div>
+          </div>
+          <div class="field">
+            <label for="contact-need">需求简述</label>
+            <span id="need-hint" class="hint">例如：企业官网升级、研发协作中台或私有化部署</span>
+            <textarea id="contact-need" name="need" rows="3" required minlength="5" aria-describedby="need-hint" data-error="need-error"></textarea>
+            <div id="need-error" class="error-msg">
+              <span role="img" aria-label="Error">❌</span> 请简述您的业务需求（至少 5 个字符）。
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">提交咨询申请</button>
+          <p id="form-status" class="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2026 星云智算企业官网. Powered by AIP Workforce Platform.</p>
+      <a href="#top">返回顶部</a>
+    </div>
+  </footer>
+
+  <dialog id="demo-dialog" closedby="any" aria-labelledby="demo-dialog-title">
+    <form method="dialog" class="dialog-box">
+      <div class="dialog-head">
+        <h2 id="demo-dialog-title">预约产品与架构演示</h2>
+        <button type="submit" value="close" class="btn btn-ghost" aria-label="关闭弹窗">关闭</button>
+      </div>
+      <p>我们的交付专家可为您提供「飞书立项 → AI 员工协作 → GitHub 自动交付」全流程实时演示。</p>
+      <div class="dialog-actions">
+        <button type="submit" value="cancel" class="btn btn-secondary">稍后再说</button>
+        <button type="submit" value="go-contact" class="btn btn-primary" id="dialog-go-contact">前往填写需求</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>

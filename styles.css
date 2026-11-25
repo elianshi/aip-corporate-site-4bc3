@@ -1,0 +1,206 @@
+:root {
+  color-scheme: light dark;
+  --bg: light-dark(#f8fafc, #0b1120);
+  --bg-alt: light-dark(#eef2ff, #111a2e);
+  --surface: light-dark(#ffffff, #162038);
+  --text: light-dark(#0f172a, #e2e8f0);
+  --muted: light-dark(#475569, #94a3b8);
+  --border: light-dark(#cbd5e1, #27344f);
+  --accent: light-dark(#2563eb, #60a5fa);
+  --accent-contrast: light-dark(#ffffff, #091326);
+  --danger: light-dark(#dc2626, #f87171);
+  --success: light-dark(#15803d, #4ade80);
+  --radius: 14px;
+}
+
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+  color-scheme: dark;
+}
+:root:has(> head > meta[name="color-scheme"][content="light"]) {
+  color-scheme: light;
+}
+
+.theme-label-dark { display: none; }
+.theme-label-light { display: inline; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) .theme-label-dark { display: inline; }
+  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) .theme-label-light { display: none; }
+}
+:root:has(> head > meta[name="color-scheme"][content="dark"]) .theme-label-dark { display: inline; }
+:root:has(> head > meta[name="color-scheme"][content="dark"]) .theme-label-light { display: none; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container { width: min(1120px, 92vw); margin-inline: auto; }
+
+.skip-link {
+  position: absolute; left: -9999px;
+}
+.skip-link:focus {
+  position: fixed; left: 1rem; top: 1rem; z-index: 100;
+  background: var(--accent); color: var(--accent-contrast);
+  padding: 0.5rem 0.9rem; border-radius: 8px;
+}
+
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  backdrop-filter: blur(12px);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 68px;
+}
+.brand {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  text-decoration: none; color: var(--text); font-weight: 700; font-size: 1.05rem;
+}
+.brand-mark { color: var(--accent); }
+.nav-list {
+  display: flex; list-style: none; gap: 1.4rem; margin: 0; padding: 0;
+}
+.nav-list a {
+  text-decoration: none; color: var(--muted); font-weight: 500;
+}
+.nav-list a:hover { color: var(--accent); }
+.header-actions { display: flex; align-items: center; gap: 0.6rem; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 10px; padding: 0.55rem 1.05rem; font-weight: 600;
+  font-size: 0.92rem; cursor: pointer; text-decoration: none;
+  border: 1px solid transparent; transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: var(--accent-contrast); }
+.btn-secondary { background: var(--surface); color: var(--text); border-color: var(--border); }
+.btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+
+.hero { padding: 4.5rem 0 3.5rem; }
+.hero-grid {
+  display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2.5rem; align-items: center;
+}
+.eyebrow {
+  display: inline-block; margin: 0 0 0.75rem; padding: 0.25rem 0.75rem;
+  border-radius: 999px; font-size: 0.84rem; font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent);
+}
+.hero h1 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.18; margin: 0 0 1rem; }
+.hero-desc { color: var(--muted); font-size: 1.06rem; margin: 0 0 1.6rem; max-width: 58ch; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 2rem; }
+.metrics-strip {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0;
+  padding-top: 1.4rem; border-top: 1px solid var(--border);
+}
+.metric-item dt { font-size: 0.84rem; color: var(--muted); }
+.metric-item dd { margin: 0.2rem 0 0; font-size: 1.45rem; font-weight: 700; color: var(--accent); }
+.arch-svg { width: 100%; height: auto; color: var(--accent); }
+
+.section { padding: 4rem 0; }
+.section-alt { background: var(--bg-alt); }
+.section-head { margin-bottom: 2rem; }
+.section-head h2 { margin: 0 0 0.5rem; font-size: 1.75rem; }
+.section-head p { margin: 0; color: var(--muted); }
+
+.cards-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.card, .step-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.card h3, .step-card h3 { margin: 0 0 0.5rem; font-size: 1.15rem; }
+.card p, .step-card p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+
+.steps-grid {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem;
+}
+.step-num { display: inline-block; font-weight: 800; color: var(--accent); margin-bottom: 0.4rem; }
+
+.faq-wrap { max-width: 780px; }
+.faq-list { display: grid; gap: 0.75rem; }
+.faq-list details {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+}
+.faq-list summary { cursor: pointer; font-weight: 600; }
+.faq-list details p { margin: 0.75rem 0 0; color: var(--muted); }
+
+.contact-grid {
+  display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 2rem; align-items: start;
+}
+.build-meta { color: var(--muted); font-size: 0.9rem; margin-top: 1.25rem; }
+.contact-form {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.5rem; display: grid; gap: 1rem;
+}
+.field { display: grid; gap: 0.3rem; }
+.field label { font-weight: 600; font-size: 0.94rem; }
+.hint { font-size: 0.82rem; color: var(--muted); }
+.field input, .field textarea {
+  width: 100%; padding: 0.65rem 0.8rem; border-radius: 9px;
+  border: 1px solid var(--border); background: var(--bg); color: var(--text);
+  font: inherit;
+}
+.error-msg { display: none; color: var(--danger); font-size: 0.84rem; }
+:is(input, textarea):is(:user-invalid, .user-invalid-fallback) {
+  border-color: var(--danger);
+}
+:is(input, textarea):is(:user-invalid, .user-invalid-fallback) + .error-msg {
+  display: block;
+}
+:is(input, textarea):user-valid {
+  border-color: var(--success);
+}
+.form-status { margin: 0; font-size: 0.92rem; font-weight: 600; color: var(--success); }
+
+dialog {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); color: var(--text); max-width: 460px; width: 90vw;
+  padding: 1.4rem;
+}
+dialog::backdrop { background: rgb(0 0 0 / 55%); }
+.dialog-head { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.dialog-head h2 { margin: 0; font-size: 1.2rem; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 0.6rem; margin-top: 1.2rem; }
+
+.site-footer { border-top: 1px solid var(--border); padding: 1.5rem 0; }
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  color: var(--muted); font-size: 0.9rem;
+}
+.footer-inner a { color: var(--accent); text-decoration: none; }
+
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important; clip-path: inset(50%) !important; overflow: hidden !important;
+  width: 1px !important; height: 1px !important; margin: -1px !important; padding: 0 !important;
+  border: 0 !important; white-space: nowrap !important;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes card-reveal {
+      from { opacity: 0.25; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal-card {
+      animation: card-reveal auto linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 65%;
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .hero-grid, .cards-grid, .steps-grid, .contact-grid { grid-template-columns: 1fr; }
+  .nav-list { display: none; }
+}
