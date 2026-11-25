@@ -116,7 +116,7 @@
       if (dirtyMap.get(e.target)) syncField(e.target, false);
     });
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       let firstInvalid = null;
       form.querySelectorAll("input, textarea").forEach((el) => {
@@ -129,8 +129,49 @@
         return;
       }
       const nameVal = document.getElementById("contact-name").value.trim();
+      const emailVal = document.getElementById("contact-email").value.trim();
+      const needVal = document.getElementById("contact-need").value.trim();
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      const params = new URLSearchParams(window.location.search);
+      const endpoint = params.get("api") || document.querySelector('meta[name="aip-endpoint"]')?.content || "http://127.0.0.1:8090/api/v1/inbound/leads";
+      const projectCode = document.querySelector('meta[name="aip-project-code"]')?.content || "";
+      const projectName = document.querySelector('meta[name="aip-project-name"]')?.content || document.title;
+
+      let liveAck = "";
+      try {
+        const resp = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            project_code: projectCode,
+            project_name: projectName,
+            source: "contact_form",
+            contact_name: nameVal,
+            contact_email: emailVal,
+            need: needVal,
+            page_url: window.location.href
+          })
+        });
+        if (resp.ok) {
+          const data = await resp.json();
+          liveAck = `已实时推送至飞书运营专员 Luna（归类：${data.intent || "咨询"} · 优先级：${data.priority || "P1"}）。`;
+        }
+      } catch (err) {
+        try {
+          const q = JSON.parse(localStorage.getItem("aip-pending-leads") || "[]");
+          q.push({ contact_name: nameVal, contact_email: emailVal, need: needVal, at: new Date().toISOString() });
+          localStorage.setItem("aip-pending-leads", JSON.stringify(q));
+        } catch (storageErr) {}
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+
       if (formStatus) {
-        formStatus.textContent = `感谢 ${nameVal}！我们已收到您的企业咨询请求，架构师将尽快联系您。`;
+        formStatus.textContent = liveAck
+          ? `感谢 ${nameVal}！${liveAck}`
+          : `感谢 ${nameVal}！我们已登记您的企业咨询请求，架构师将尽快联系您。`;
       }
       form.reset();
       form.querySelectorAll("input, textarea").forEach((el) => {
