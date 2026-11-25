@@ -140,6 +140,7 @@
       const projectName = document.querySelector('meta[name="aip-project-name"]')?.content || document.title;
 
       let liveAck = "";
+      let pushErr = "";
       try {
         const resp = await fetch(endpoint, {
           method: "POST",
@@ -157,8 +158,11 @@
         if (resp.ok) {
           const data = await resp.json();
           liveAck = `已实时推送至飞书运营专员 Luna（归类：${data.intent || "咨询"} · 优先级：${data.priority || "P1"}）。`;
+        } else {
+          pushErr = `服务返回状态 ${resp.status}`;
         }
       } catch (err) {
+        pushErr = err?.message || "无法连接本地服务";
         try {
           const q = JSON.parse(localStorage.getItem("aip-pending-leads") || "[]");
           q.push({ contact_name: nameVal, contact_email: emailVal, need: needVal, at: new Date().toISOString() });
@@ -169,9 +173,13 @@
       }
 
       if (formStatus) {
-        formStatus.textContent = liveAck
-          ? `感谢 ${nameVal}！${liveAck}`
-          : `感谢 ${nameVal}！我们已登记您的企业咨询请求，架构师将尽快联系您。`;
+        if (liveAck) {
+          formStatus.style.color = "var(--success)";
+          formStatus.textContent = `感谢 ${nameVal}！${liveAck}`;
+        } else {
+          formStatus.style.color = "var(--danger)";
+          formStatus.textContent = `⚠️ 线索已暂存本地，但未能推送至飞书（${pushErr}）。请确认本地 127.0.0.1:8090 服务已启动并在 Chromium/内置浏览器中刷新页面后重试。`;
+        }
       }
       form.reset();
       form.querySelectorAll("input, textarea").forEach((el) => {
